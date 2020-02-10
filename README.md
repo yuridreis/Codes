@@ -71,19 +71,20 @@
 
 ## Conteudo
 
-    <div class="pagination">
-        <?php
-        echo paginate_links( array(
-            'format'  => 'page/%#%',
-            'current' => $paged,
-            'total'   => $the_query->max_num_pages,
-            'mid_size'        => 2,
-            'end_size'        => 1,
-            'prev_text'       => false,
-            'next_text'       => false,
-        ) );
-        ?>
-    </div>
+   	<div class="pagination">
+		<?php
+			echo paginate_links( array(
+			'format'  => 'page/%#%',
+			'current' => $paged,
+			'total'   => $the_query->max_num_pages,
+			'show_all' => true,
+			'prev_next' => true,
+			'prev_text' => false,
+			'next_text' => false,
+			'type' => 'list',
+		) );
+		?>	
+	</div>
     
 # Search
 
@@ -171,7 +172,7 @@
 
 # Mostrar as tags de um post
 
-    $tags = get_tags();
+    $tags = get_the_tags(get_the_ID());
     foreach ($tags as $tags) {
         echo '<li>'.$tags->name.'</li>';
     }
