@@ -49,18 +49,11 @@
 
 ## Inicio
 
-    <?php 
+   <?php 
         global $wp_query;
         $wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
         $big = 999999999;
     ?>
-
-
->  ***Usar a de cima para evitar bugs***
-
-    
-
-    $paged = ( get_query_var( 'page' ) ) ? absint( get_query_var( 'page' ) ) : 1;
 
 
 ## Adicionar nos args
@@ -75,7 +68,7 @@
 		<?php
 			echo paginate_links( array(
 			'format'  => 'page/%#%',
-			'current' => $paged,
+			'current' => $current,
 			'total'   => $the_query->max_num_pages,
 			'show_all' => true,
 			'prev_next' => true,

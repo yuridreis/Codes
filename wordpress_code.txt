@@ -61,42 +61,37 @@
 //PHP
 
 
-<?php 
-    global $wp_query;
-    $wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
-    $big = 999999999;
-?>
+ <?php
+       $args = array(
+           'post_type' => 'blog',
+           'posts_per_page' => 9,
+           'paged' => $paged, // Adicionar aqui
+       );
+       $the_query = new WP_Query($args);
+   ?>
 
+    <?php 
+        global $wp_query;
+        $wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
+        $big = 999999999;
+    ?>
 
-// Usar a de cima para evitar bug
-
-$paged = ( get_query_var( 'page' ) ) ? absint( get_query_var( 'page' ) ) : 1;
-
-
---------------
-
-
-
-//Adicionar nos args
-
-'paged' => $paged,
-
---------------------------
 
 //HTML
 
 <div class="pagination">
-    <?php
-    echo paginate_links( array(
-        'format'  => 'page/%#%',
-        'current' => $paged,
-        'total'   => $the_query->max_num_pages,
-        'mid_size'        => 2,
-        'end_size'        => 1,
-        'prev_text'       => false,
-        'next_text'       => false,
-    ) );
-    ?>
+	<?php
+		echo paginate_links( array(
+		'format'  => 'page/%#%',
+		'current' => $current,
+		'total'   => $the_query->max_num_pages,
+		'show_all' => true,
+		'prev_next' => true,
+		'prev_text' => false,
+		'next_text' => false,
+		'type' => 'list',
+	) );
+	?>	
 </div>
 
 
