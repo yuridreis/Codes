@@ -49,13 +49,13 @@
 
 ## Inicio
 
-   `
-	<?php 
+	Pegar do codes, esse está removendo parte do texto
+
+   <?php 
         global $wp_query;
         $wp_query->query_vars['paged'] > 1 ? $current = $wp_query->query_vars['paged'] : $current = 1;
         $big = 999999999;
     ?>
-	`
 
 
 ## Adicionar nos args
